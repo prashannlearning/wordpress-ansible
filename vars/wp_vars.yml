@@ -1,0 +1,13 @@
+#PHP Settings
+php_modules: [ 'php', 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
+ 
+#MySQL Settings
+mysql_root_password: "buildverse-root"
+mysql_db: "wpdb"
+mysql_user: "wpdbuser"
+mysql_password: "wpdbpass"
+ 
+#HTTP Settings
+http_host: "wp.buildiverse.com"
+http_conf: "httpd.conf"
+http_port: "8443"

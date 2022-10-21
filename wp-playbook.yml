@@ -1,0 +1,13 @@
+- hosts: wordpress
+  gather_facts: False
+  remote_user: centos
+  become_user: root
+  become: true
+  vars_files:
+    - vars/wp_vars.yml
+  roles:
+    - apache
+    - php
+    - mysql
+    - wordpress
+    - firewall
