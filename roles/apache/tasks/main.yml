@@ -19,6 +19,22 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
-    
+
+- name: Copy server-cert.pem
+  copy:
+    src: "files/server-cert.pem"
+    dest: "/etc/ssl/certs/httpd/server-cert.pem"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: Copy server-key.pem
+  copy:
+    src: "files/server-key.pem"
+    dest: "/etc/ssl/certs/httpd/server-key.pem"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
 - name: Start httpd service
   systemd: name=httpd state=started enabled=yes
