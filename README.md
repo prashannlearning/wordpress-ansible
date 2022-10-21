@@ -4,7 +4,7 @@
 
 We will see how to configure wordpress using ansible-playbook.
 
-Pre-requisites:
+# Pre-requisites:
   1. A server running with Ansible installed and configured act as control node, if not few quick setps
  
       a. yum install python3.9
@@ -13,14 +13,14 @@ Pre-requisites:
   2. A remote server which will be used as application server to configure wordpress.
   3. Control node and application node has ssh connectivity.
 
-Assumptions:
+# Assumptions:
 1. Ec2 instance is up and running.
 2. passwordless authentication is there between control and application node.
 
-Considerations and Improvements for future:
+# Considerations and Improvements for future:
 1. To store DB password we can use ansible-vault.
 
-Overview:
+# Overview:
 This ansible-playbook will install and configure wordpress on ec2 instance, it contains few sub plabooks and one main plabook which will do below things.
 
 1. Install and configure apache httpd server with ssl enabled.
@@ -29,7 +29,30 @@ This ansible-playbook will install and configure wordpress on ec2 instance, it c
 4. Download and configure wordpress bundle.
 5. configure firewalld and open custom https port 8443.
 
-Steps:
+# Steps:
 1. clone the repo to you control node.
 2. cd wordpress-playbook
 3. ansible-playbook playbook.yml -i hosts
+
+X------------------------X--------------------------X---------------------------X-----------------------X
+
+<img width="1226" alt="image" src="https://user-images.githubusercontent.com/116376587/197271989-13b877a0-a864-405f-850d-78c8e6ae8ca5.png">
+
+# Making Wordpress highly available 
+
+# Ansible Documentaion: https://docs.ansible.com/ansible/latest/collections/community/aws/elb_target_module.html
+
+To make our wordpress site highly available we would need below services, assuming AWS as cloud provider.
+
+1. Application Load Balancer.
+2. Target Group.
+3. Autoscalling Group.
+
+# Assumptions:
+1. Control node can authenticate with aws in order to provision or configure service.
+2. Above mentioned applications are already provisioned.
+
+
+step: 
+
+
