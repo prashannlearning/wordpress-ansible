@@ -6,6 +6,7 @@ We will see how to configure wordpress using ansible-playbook.
 
 Pre-requisites:
   1. A server running with Ansible installed and configured act as control node, if not few quick setps
+ 
       a. yum install python3.9
       b. python3 -m pip install --user ansible
   2. A remote server which will be used as application server to configure wordpress.
