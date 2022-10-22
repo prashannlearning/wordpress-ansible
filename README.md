@@ -64,3 +64,14 @@ To make our wordpress site highly available we would need below services, assumi
 Steps:
 1. cd HA_configuration
 2. ansible-playbook playbook.yml -i ../hosts
+
+
+# Dockerfile
+
+<img width="1314" alt="image" src="https://user-images.githubusercontent.com/116376587/197334736-622158bc-0353-4e9f-9a76-6e9a6bba1cf6.png">
+
+steps:
+
+1. locate Dockerfile.
+2. build docker image 
+  docker build . -t wordpress
