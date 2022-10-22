@@ -1,0 +1,11 @@
+- name: making wordpress HA
+  hosts: local
+  connection: local
+
+  tasks:
+
+  - name: Register an instance target to a target group
+    community.aws.elb_target:
+      target_group_name: wordPress_tg
+      target_id: i-1234567
+      state: present
