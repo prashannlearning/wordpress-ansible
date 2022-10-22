@@ -31,7 +31,7 @@ This ansible-playbook will install and configure wordpress on ec2 instance, it c
 
 # Steps:
 1. clone the repo to you control node.
-2. cd wordpress-playbook
+2. cd wordpress-ansible
 3. ansible-playbook playbook.yml -i hosts
 
 X------------------------X--------------------------X---------------------------X-----------------------X
