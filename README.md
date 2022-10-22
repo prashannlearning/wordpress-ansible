@@ -40,19 +40,27 @@ X------------------------X--------------------------X---------------------------
 
 # Making Wordpress highly available 
 
-# Ansible Documentaion: https://docs.ansible.com/ansible/latest/collections/community/aws/elb_target_module.html
+# Ansible Documentaion: 
+https://docs.ansible.com/ansible/latest/collections/community/aws/elb_target_module.html
 
 To make our wordpress site highly available we would need below services, assuming AWS as cloud provider.
 
-1. Application Load Balancer.
-2. Target Group.
-3. Autoscalling Group.
+1. Create launch configuration.
+2. Application Load Balancer.
+3. Target Group.
+4. Autoscalling Group.
 
 # Assumptions:
 1. Control node can authenticate with aws in order to provision or configure service.
 2. Above mentioned applications are already provisioned.
 
+# Overview:
+1. We will create a Launch configuration using an existing ec2 instance.
+2. We will create TG for wp site.
+3. We will create a ALB with listeners forwarding request to wp_tg when request comes to /wordpress.
+4. we wiil create ASG with LB attached with mim 1 and desire 2 instance.
 
-step: 
 
-
+Steps:
+1. cd HA_configuration
+2. ansible-playbook playbook.yml -i ../hosts
