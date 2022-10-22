@@ -3,9 +3,56 @@
   connection: local
 
   tasks:
+  - name: create a launch configuration using a running instance id as a basis
+    community.aws.ec2_lc:
+      name: wp_lc
+      instance_id: i-1234567
+      key_name: default
+      security_groups: ['wpsg' ]
+      volumes:
+      - device_name: /dev/sda1
+        volume_size: 50
+        volume_type: io1
+        iops: 3000
+        delete_on_termination: true
+ 
+ #create ALB
+  - community.aws.elb_application_lb:
+      name: wp_alb
+      subnets:
+        - subnet-12345678
+        - subnet-87654321
+      security_groups:
+        - sg-12345678
+      scheme: internal
+      listeners:
+        - Protocol: HTTPS
+          Port: 443
+          DefaultActions:
+            - Type: forward
+              TargetGroupName: wordPress_tg
+          Certificates:
+            - CertificateArn: arn:aws:iam::12345678987:server-certificate/wp.buildiverse.com
+          SslPolicy: ELBSecurityPolicy-2022-10
+          Rules:
+            - Conditions:
+                - Field: path-pattern
+                  Values:
+                    - '/wordpress'
 
-  - name: Register an instance target to a target group
+  - community.aws.ec2_asg:
+      name: wp_asg
+      load_balancers: [ 'wp-alb' ]
+      availability_zones: [ 'eu-west-1a', 'eu-west-1b' ]
+      launch_config_name: 'wp_lc'
+      min_size: 1
+      max_size: 5
+      desired_capacity: 2
+      vpc_zone_identifier: [ 'subnet-abcd1234', 'subnet-1a2b3c4d' ]
+      tags:
+        - application: wordpress
+
+  - name: create TG
     community.aws.elb_target:
       target_group_name: wordPress_tg
-      target_id: i-1234567
-      state: present
+
