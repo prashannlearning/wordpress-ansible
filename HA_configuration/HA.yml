@@ -39,7 +39,7 @@
                 - Field: path-pattern
                   Values:
                     - '/wordpress'
-
+#create ASG
   - community.aws.ec2_asg:
       name: wp_asg
       load_balancers: [ 'wp-alb' ]
